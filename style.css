@@ -1,34 +1,12 @@
-/* ====== ESTILOS GENERALES ====== */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
+/* ================= GENERAL ================= */
 body {
   background-color: #f5f6fa;
   font-family: 'Segoe UI', Arial, sans-serif;
-  color: #333;
-  line-height: 1.6;
+  margin: 0;
+  padding: 0;
 }
 
-/* ====== NAVBAR SUPERIOR ====== */
-.navbar {
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-}
-.navbar-brand {
-  font-weight: bold;
-  font-size: 1.3rem;
-}
-.navbar .nav-link {
-  font-weight: 500;
-  margin-left: 8px;
-}
-.navbar .nav-link:hover {
-  color: #0d6efd !important;
-}
-
-/* ====== SIDEBAR ====== */
+/* ================= SIDEBAR ================= */
 .sidebar {
   width: 240px;
   position: fixed;
@@ -39,7 +17,7 @@ body {
   color: #fff;
   padding-top: 20px;
   transition: transform 0.3s ease;
-  z-index: 1040;
+  z-index: 1030;
 }
 .sidebar h3 {
   text-align: center;
@@ -59,209 +37,49 @@ body {
   background: #0d6efd;
   color: #fff;
 }
-.sidebar-section {
-  font-size: 0.8rem;
-  font-weight: bold;
-  color: #888;
-  margin: 15px 0 5px 20px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
 
-/* ====== CONTENIDO ====== */
+/* ================= CONTENT ================= */
 .content {
   margin-left: 240px;
   padding: 20px;
   transition: margin-left 0.3s ease;
 }
-.card {
-  border: none;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-  background: #fff;
-}
 
-/* ====== HERO ====== */
-.hero {
-  background: url("img/piscina.jpg") center/cover no-repeat;
-  height: 450px;
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: white;
-  text-align: center;
-}
-.hero::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,0.55);
-}
-.hero-content {
-  position: relative;
-  z-index: 1;
-}
-.hero-content h1 {
-  font-size: 2.5rem;
-  font-weight: bold;
-  text-shadow: 0 3px 8px rgba(0,0,0,0.6);
-}
-.hero-content p {
-  font-size: 1.3rem;
-  font-style: italic;
-  text-shadow: 0 2px 6px rgba(0,0,0,0.6);
-}
-
-/* ====== HISTORIA ====== */
-.historia {
-  padding: 60px 20px;
-  background: #fff;
-}
-.historia h2 {
-  text-align: center;
-  font-weight: bold;
-  margin-bottom: 30px;
-}
-.historia span {
-  color: #0d6efd;
-}
-.historia .contenido {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  align-items: center;
-  justify-content: center;
-}
-.historia img {
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-  max-width: 450px;
-  flex: 1;
-}
-.historia p {
-  flex: 2;
-  font-size: 1.1rem;
-  color: #333;
-  text-align: justify;
-}
-
-/* ====== FEATURES ====== */
-.features {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
-  padding: 60px 20px;
-  background: #f8f9fa;
-}
-.feature-card {
-  flex: 1 1 280px;
-  background: #fff;
-  border-radius: 12px;
-  padding: 25px;
-  text-align: center;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-  transition: transform 0.3s;
-}
-.feature-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
-}
-.feature-card i {
-  font-size: 2rem;
-  margin-bottom: 15px;
-  color: #0d6efd;
-}
-.feature-card h4 {
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-
-/* ====== CARDS DE MÉTRICAS ====== */
+/* ================= CARDS ================= */
 .metric-card {
   border-radius: 12px;
-  padding: 20px;
-  text-align: center;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
   transition: transform 0.2s;
+  background: #fff;
 }
 .metric-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-4px);
 }
 .metric-icon {
   font-size: 2rem;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 .metric-value {
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   font-weight: bold;
+  margin: 6px 0;
 }
 .btn-metric {
-  font-size: 0.85rem;
-  margin-top: 6px;
+  font-size: 0.8rem;
+  margin-top: 4px;
 }
 
-/* ====== TABLAS ====== */
-.table-container {
-  background: white;
+/* ================= CHARTS ================= */
+.chart-card {
   border-radius: 12px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
   padding: 20px;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
-}
-.table th {
-  background: #0d6efd;
-  color: white;
-  text-align: center;
-}
-.table td {
-  text-align: center;
-  vertical-align: middle;
-}
-
-/* ====== FORMULARIO CONTACTO ====== */
-.contacto-form {
-  max-width: 600px;
-  margin: 30px auto;
   background: #fff;
-  padding: 30px;
-  border-radius: 12px;
-  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
-}
-.contacto-form h2 {
-  text-align: center;
-  margin-bottom: 20px;
-}
-.contacto-footer {
-  background: #2c2c2c;
-  color: white;
-  padding: 40px 20px;
-  margin-top: 40px;
-}
-.contacto-footer h5 {
-  font-weight: bold;
-  margin-bottom: 15px;
 }
 
-/* ====== FOOTER ====== */
-footer {
-  text-align: center;
-  padding: 15px;
-  background: #212529;
-  color: #bbb;
-  font-size: 0.9rem;
-  margin-top: 30px;
-}
-footer a {
-  color: #0d6efd;
-  text-decoration: none;
-}
-footer a:hover {
-  text-decoration: underline;
-}
+/* ================= RESPONSIVE ================= */
 
-/* ====== RESPONSIVE ====== */
-
-/* Tablets y móviles */
+/* Tablets y móviles (sidebar se oculta) */
 @media (max-width: 992px) {
   .sidebar {
     transform: translateX(-100%);
@@ -274,37 +92,25 @@ footer a:hover {
     margin-left: 0;
     padding: 15px;
   }
-  .hero-content h1 {
-    font-size: 2rem;
-  }
-  .historia .contenido {
-    flex-direction: column;
-    text-align: center;
-  }
-  .historia img {
-    max-width: 100%;
+  .header-dashboard h2 {
+    font-size: 1.4rem;
   }
 }
 
 /* Móviles pequeños */
 @media (max-width: 768px) {
-  .hero {
-    height: 300px;
-  }
-  .hero-content h1 {
-    font-size: 1.6rem;
-  }
-  .hero-content p {
-    font-size: 1rem;
-  }
   .metric-card {
     margin-bottom: 15px;
   }
-  .features {
-    padding: 30px 10px;
+  .metric-value {
+    font-size: 1.3rem;
   }
-  .feature-card {
-    flex: 1 1 100%;
+  .header-dashboard {
+    padding: 18px;
+  }
+  .header-dashboard h2 {
+    font-size: 1.2rem;
   }
 }
+
 
