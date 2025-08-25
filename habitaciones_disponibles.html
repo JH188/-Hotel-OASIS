@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hotel OASIS - Habitaciones Disponibles</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <style>
+    .habitacion-card {
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      overflow: hidden;
+      margin-bottom: 30px;
+      transition: transform .2s;
+    }
+    .habitacion-card:hover {
+      transform: scale(1.02);
+    }
+    .habitacion-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+    .precio-tag {
+      position: absolute;
+      background: #0d6efd;
+      color: #fff;
+      padding: 5px 10px;
+      border-radius: 0 0 8px 0;
+      font-size: 0.9rem;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body class="bg-light">
+
+  <div class="container py-4">
+    <!-- Botón volver -->
+    <a href="index.html" class="btn btn-secondary mb-3">
+      <i class="fa fa-arrow-left me-2"></i> Volver al inicio
+    </a>
+
+    <h2 class="text-center fw-bold mb-4"><i class="fa fa-hotel me-2"></i> Habitaciones Disponibles</h2>
+
+    <!-- Aquí se cargan las tarjetas -->
+    <div class="row" id="listaHabitaciones"></div>
+
+    <footer class="text-center mt-4">
+      &copy; 2025 Hotel OASIS - Todos los derechos reservados
+    </footer>
+  </div>
+
+<!-- Modal Reserva PRO -->
+<div class="modal fade" id="modalReserva" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content shadow-lg border-0 rounded-4">
+      
+      <!-- Header con degradado -->
+      <div class="modal-header text-white" style="background: linear-gradient(135deg, #0d6efd, #00b894);">
+        <h5 class="modal-title"><i class="fa fa-calendar-check me-2"></i> Confirmar Reserva</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      
+      <!-- Cuerpo del modal -->
+      <div class="modal-body p-4">
+        <form id="formReserva" class="row g-3">
+          <input type="hidden" id="habitacionId">
+          <input type="hidden" id="habitacionTipo">
+          <input type="hidden" id="habitacionImagen">
+
+          <div class="col-12">
+            <label for="nombre" class="form-label fw-bold">Nombre</label>
+            <div class="input-group">
+              <span class="input-group-text"><i class="fa fa-user"></i></span>
+              <input type="text" id="nombre" class="form-control" placeholder="Ingresa tu nombre" required>
+            </div>
+          </div>
+
+          <div class="col-12">
+            <label for="apellido" class="form-label fw-bold">Apellidos</label>
+            <div class="input-group">
+              <span class="input-group-text"><i class="fa fa-user-tag"></i></span>
+              <input type="text" id="apellido" class="form-control" placeholder="Ingresa tus apellidos" required>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <label for="ingreso" class="form-label fw-bold">Fecha de ingreso</label>
+            <div class="input-group">
+              <span class="input-group-text"><i class="fa fa-sign-in-alt"></i></span>
+              <input type="date" id="ingreso" class="form-control" required>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <label for="salida" class="form-label fw-bold">Fecha de salida</label>
+            <div class="input-group">
+              <span class="input-group-text"><i class="fa fa-sign-out-alt"></i></span>
+              <input type="date" id="salida" class="form-control" required>
+            </div>
+          </div>
+        </form>
+      </div>
+      
+      <!-- Footer con botones -->
+      <div class="modal-footer d-flex justify-content-between">
+        <button class="btn btn-light border rounded-pill px-4" data-bs-dismiss="modal">
+          <i class="fa fa-times me-2"></i> Cancelar
+        </button>
+        <button class="btn btn-success rounded-pill px-4 shadow" onclick="confirmarReserva()">
+          <i class="fa fa-check me-2"></i> Confirmar Reserva
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <!-- Scripts -->
+  <script src="js.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    let habitacionSeleccionada = null;
+
+    function renderHabitaciones() {
+      const data = getHotelData();
+      const contenedor = document.getElementById("listaHabitaciones");
+      contenedor.innerHTML = "";
+
+      const habitaciones = [
+        { id: 101, tipo: "Habitación Individual", precio: 50, desc: "Cómoda habitación para una persona.", imagen: "individual.jpg" },
+        { id: 102, tipo: "Habitación Doble", precio: 80, desc: "Perfecta para dos personas.", imagen: "doble.jpg" },
+        { id: 103, tipo: "Habitación Standard", precio: 70, desc: "Confort y accesibilidad.", imagen: "standard.jpg" },
+        { id: 104, tipo: "Habitación Deluxe", precio: 120, desc: "Lujo y comodidad.", imagen: "deluxe.jpg" },
+        { id: 105, tipo: "Suite", precio: 200, desc: "Elegancia y espacio máximo.", imagen: "suite.jpg" }
+      ];
+
+      habitaciones.forEach(h => {
+        const ocupada = data.reservas.some(r => r.habitacionId === h.id && r.estado === "Activa");
+
+        contenedor.innerHTML += `
+          <div class="col-md-4">
+            <div class="habitacion-card card position-relative">
+              <span class="precio-tag">$${h.precio} / noche</span>
+              <img src="img/${h.imagen}" alt="${h.tipo}">
+              <div class="p-3">
+                <h5 class="fw-bold">${h.tipo}</h5>
+                <p>${h.desc}</p>
+                ${
+                  ocupada
+                  ? `<button class="btn btn-danger w-100" disabled>Ya reservada</button>`
+                  : `<button class="btn btn-primary w-100" onclick='abrirReserva(${JSON.stringify(h)})'>Reservar</button>`
+                }
+              </div>
+            </div>
+          </div>
+        `;
+      });
+    }
+
+    function abrirReserva(habitacion) {
+      habitacionSeleccionada = habitacion;
+      document.getElementById("habitacionId").value = habitacion.id;
+      document.getElementById("habitacionTipo").value = habitacion.tipo;
+      document.getElementById("habitacionImagen").value = habitacion.imagen;
+
+      const modal = new bootstrap.Modal(document.getElementById("modalReserva"));
+      modal.show();
+    }
+
+    function confirmarReserva() {
+      const nombre = document.getElementById("nombre").value.trim();
+      const apellido = document.getElementById("apellido").value.trim();
+      const ingreso = document.getElementById("ingreso").value;
+      const salida = document.getElementById("salida").value;
+
+      if (!nombre || !apellido || !ingreso || !salida) {
+        alert("⚠️ Completa todos los campos.");
+        return;
+      }
+
+      hacerReserva(
+        nombre + " " + apellido,
+        habitacionSeleccionada.tipo,
+        ingreso,
+        salida,
+        habitacionSeleccionada.imagen,
+        habitacionSeleccionada.id
+      );
+
+      // cerrar modal
+      const modal = bootstrap.Modal.getInstance(document.getElementById("modalReserva"));
+      modal.hide();
+
+      // limpiar form
+      document.getElementById("formReserva").reset();
+
+      renderHabitaciones();
+    }
+
+    document.addEventListener("DOMContentLoaded", renderHabitaciones);
+  </script>
+</body>
+</html>

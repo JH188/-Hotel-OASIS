@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hotel OASIS - Habitaciones Ocupadas</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <style>
+    .ocupada-card {
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: transform 0.2s;
+    }
+    .ocupada-card:hover {
+      transform: translateY(-5px);
+    }
+    .ocupada-card img {
+      height: 180px;
+      object-fit: cover;
+      border-radius: 12px 12px 0 0;
+      width: 100%;
+    }
+    .no-ocupadas {
+      text-align: center;
+      color: #6c757d;
+      font-size: 1.1rem;
+      padding: 40px 0;
+    }
+  </style>
+</head>
+<body class="bg-light">
+
+  <div class="content p-4">
+    <!-- Botón volver -->
+    <a href="index.html" class="btn btn-secondary mb-3">
+      <i class="fa fa-arrow-left me-2"></i> Volver al inicio
+    </a>
+
+    <h2 class="fw-bold mb-4 text-primary"><i class="fa fa-door-closed me-2"></i> Habitaciones Ocupadas</h2>
+
+    <div id="ocupadasContainer" class="row g-4"></div>
+  </div>
+
+  <footer class="text-center mt-4">
+    &copy; 2025 Hotel OASIS - Todos los derechos reservados
+  </footer>
+
+  <script src="js.js"></script>
+  <script>
+    function cargarOcupadas() {
+      const data = getHotelData();
+      const container = document.getElementById("ocupadasContainer");
+      container.innerHTML = "";
+
+      const reservasVigentes = data.reservas.filter(r => r.estado === "Activa");
+
+      if (reservasVigentes.length === 0) {
+        container.innerHTML = `
+          <div class="no-ocupadas">
+            <i class="fa fa-bed fa-2x mb-2"></i>
+            <p>No hay habitaciones ocupadas actualmente.</p>
+          </div>`;
+        return;
+      }
+
+      reservasVigentes.forEach(reserva => {
+        const card = document.createElement("div");
+        card.classList.add("col-md-4");
+        card.innerHTML = `
+          <div class="card ocupada-card">
+            <img src="img/${reserva.imagen}" alt="${reserva.habitacion}">
+            <div class="p-3">
+              <h5 class="fw-bold text-dark"><i class="fa fa-bed me-2 text-danger"></i>${reserva.habitacion}</h5>
+              <p><i class="fa fa-user me-2 text-primary"></i><strong>Huésped:</strong> ${reserva.nombre}</p>
+              <p><i class="fa fa-sign-in-alt me-2 text-success"></i><strong>Ingreso:</strong> ${reserva.ingreso}</p>
+              <p><i class="fa fa-sign-out-alt me-2 text-warning"></i><strong>Salida:</strong> ${reserva.salida}</p>
+              <button class="btn btn-danger w-100 mt-2" onclick="finalizarReserva(${reserva.id}); cargarOcupadas();">
+                <i class="fa fa-times-circle me-2"></i> Finalizar Estancia
+              </button>
+            </div>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    document.addEventListener("DOMContentLoaded", cargarOcupadas);
+  </script>
+</body>
+</html>

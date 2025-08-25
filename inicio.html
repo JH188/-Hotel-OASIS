@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hotel OASIS - Inicio</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      /* Hero */
+      .hero {
+        background: url("img/piscina.jpg") center/cover no-repeat;
+        height: 500px;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        text-align: center;
+      }
+      .hero::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.55);
+      }
+      .hero-content {
+        position: relative;
+        z-index: 1;
+        max-width: 90%;
+      }
+      .hero-content h1 {
+        font-size: 3rem;
+        font-weight: bold;
+        text-shadow: 0 3px 8px rgba(0, 0, 0, 0.6);
+      }
+      .hero-content p {
+        font-size: 1.3rem;
+        font-style: italic;
+        text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+      }
+
+      /* Historia */
+      .historia {
+        padding: 80px 20px;
+        background: #f8f9fa;
+      }
+      .historia h2 {
+        text-align: center;
+        font-weight: bold;
+        margin-bottom: 50px;
+      }
+      .historia h2 span {
+        color: #0d6efd;
+      }
+      .historia .contenido {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 30px;
+        align-items: center;
+        justify-content: center;
+      }
+      .historia img {
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        max-width: 450px;
+        flex: 1;
+      }
+      .historia p {
+        flex: 2;
+        color: #333;
+        font-size: 1.1rem;
+        line-height: 1.7;
+        text-align: justify;
+      }
+
+      /* Features */
+      .features {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 25px;
+        justify-content: center;
+        padding: 80px 20px;
+        background: white;
+      }
+      .feature-card {
+        flex: 1 1 300px;
+        background: #fff;
+        border-radius: 14px;
+        padding: 30px;
+        text-align: center;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        transition: transform 0.3s, box-shadow 0.3s;
+      }
+      .feature-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
+      }
+      .feature-card i {
+        font-size: 2.5rem;
+        margin-bottom: 15px;
+        color: #0d6efd;
+      }
+      .feature-card h4 {
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+
+      /* Footer */
+      footer {
+        background: #222;
+        color: #bbb;
+        text-align: center;
+        padding: 25px;
+        font-size: 0.9rem;
+      }
+      footer a {
+        color: #0d6efd;
+        text-decoration: none;
+        font-weight: 500;
+      }
+      footer a:hover {
+        text-decoration: underline;
+      }
+
+      /* Responsive */
+      @media (max-width: 992px) {
+        .hero {
+          height: 350px;
+        }
+        .hero-content h1 {
+          font-size: 2.2rem;
+        }
+        .hero-content p {
+          font-size: 1rem;
+        }
+        .historia .contenido {
+          flex-direction: column;
+          text-align: center;
+        }
+        .historia img {
+          max-width: 90%;
+        }
+      }
+
+      @media (max-width: 576px) {
+        .hero {
+          height: 300px;
+          padding: 20px;
+        }
+        .hero-content h1 {
+          font-size: 1.8rem;
+        }
+        .hero-content p {
+          font-size: 0.9rem;
+        }
+        .feature-card {
+          padding: 20px;
+        }
+        .feature-card i {
+          font-size: 2rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar Superior -->
+    <nav
+      class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top"
+      style="z-index: 1050"
+    >
+      <div class="container-fluid">
+        <!-- Logo -->
+        <a class="navbar-brand fw-bold" href="index.html">
+          <i class="fa fa-hotel me-2"></i> Hotel OASIS
+        </a>
+
+        <!-- Botón Hamburguesa -->
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarOasis"
+          aria-controls="navbarOasis"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Opciones -->
+        <div class="collapse navbar-collapse" id="navbarOasis">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html"
+                ><i class="fa fa-home me-1"></i> Dashboard</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="inicio.html"
+                ><i class="fa fa-play me-1"></i> Inicio</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="nosotros.html"
+                ><i class="fa fa-users me-1"></i> Nosotros</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="habitaciones.html"
+                ><i class="fa fa-bed me-1"></i> Habitaciones</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="total_reserva.html"
+                ><i class="fa fa-book me-1"></i> Reservas</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contacto.html"
+                ><i class="fa fa-envelope me-1"></i> Contáctanos</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <h3>Hotel OASIS</h3>
+      <a href="index.html"><i class="fa fa-home me-2"></i> Dashboard</a>
+      <a href="inicio.html" class="active"
+        ><i class="fa fa-play me-2"></i> Inicio</a
+      >
+      <a href="nosotros.html"><i class="fa fa-users me-2"></i> Nosotros</a>
+      <a href="habitaciones.html"
+        ><i class="fa fa-bed me-2"></i> Habitaciones</a
+      >
+      <a href="total_reserva.html"><i class="fa fa-book me-2"></i> Reservas</a>
+      <a href="contacto.html"
+        ><i class="fa fa-envelope me-2"></i> Contáctanos</a
+      >
+      <div class="mt-auto p-3 text-center small text-muted">
+        Conectado como:<br />ADMINISTRADOR
+      </div>
+    </div>
+
+    <!-- Content -->
+    <div class="content">
+      <!-- Hero -->
+      <section class="hero">
+        <div class="hero-content">
+          <h1>✨ GRACIAS POR HOSPEDARSE CON NOSOTROS ✨</h1>
+          <p>- Descubre la calma en el corazón del confort -</p>
+        </div>
+      </section>
+
+      <!-- Historia -->
+      <section class="historia">
+        <div class="container">
+          <h2><span>La Historia</span> de nuestro hotel</h2>
+          <div class="contenido">
+            <img src="img/hotel.jpg" alt="Hotel OASIS historia" />
+            <p>
+              Hace más de diez años, un grupo reducido de visionarios propuso
+              convertir un tranquilo rincón de la costa en un refugio de paz y
+              confort. Así nació el <strong>Hotel OASIS</strong>, con pasión y
+              dedicación por la hospitalidad. Desde entonces hemos sido testigos
+              de recuerdos inolvidables: familias que buscan unión, parejas
+              celebrando amor, y viajeros que encuentran en nosotros un descanso
+              único. Nuestro éxito se debe a la <strong>excelencia</strong>, a
+              la calidad de nuestras habitaciones, gastronomía de primer nivel y
+              servicios exclusivos que nos convierten en un verdadero oasis de
+              tranquilidad.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Features -->
+      <section class="features">
+        <div class="feature-card">
+          <i class="fa fa-map-marker-alt"></i>
+          <h4>Buena Locación</h4>
+          <p>Jr Moquegua 232, Av. Túpac Amaru Km. 17, Carabayllo 15321</p>
+        </div>
+        <div class="feature-card">
+          <i class="fa fa-coffee"></i>
+          <h4>Desayunos Gratis</h4>
+          <p>De 1 a 2 desayunos por habitación</p>
+        </div>
+        <div class="feature-card">
+          <i class="fa fa-dumbbell"></i>
+          <h4>Gimnasio</h4>
+          <p>Acceso exclusivo de 6:00 am a 10:00 pm</p>
+        </div>
+      </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      Copyright © Hotel Oasis, Lima Perú 2024 | Listos para recibir tus
+      reservaciones
+      <br />
+      <a href="#">Privacy Policy</a> ·
+      <a href="#">Terms & Conditions</a>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
