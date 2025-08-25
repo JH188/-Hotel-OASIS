@@ -10,6 +10,7 @@
   <style>
     body {
       background-color: #f5f6fa;
+      font-family: 'Segoe UI', Arial, sans-serif;
     }
     .header-dashboard {
       background: linear-gradient(135deg, #0d6efd, #00c3ff);
@@ -24,28 +25,20 @@
       border-radius: 12px;
       box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
       transition: transform 0.2s;
+      background: #fff;
     }
-    .metric-card:hover {
-      transform: translateY(-4px);
-    }
-    .metric-icon {
-      font-size: 2rem;
-      margin-bottom: 8px;
-    }
-    .metric-value {
-      font-size: 1.6rem;
-      font-weight: bold;
-      margin: 6px 0;
-    }
-    .btn-metric {
-      font-size: 0.8rem;
-      margin-top: 4px;
-    }
+    .metric-card:hover { transform: translateY(-4px); }
+    .metric-icon { font-size: 2rem; margin-bottom: 8px; }
+    .metric-value { font-size: 1.6rem; font-weight: bold; margin: 6px 0; }
+    .btn-metric { font-size: 0.8rem; margin-top: 4px; }
     .chart-card {
       border-radius: 12px;
       box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
       padding: 20px;
+      background: #fff;
     }
+
+    /* ===== SIDEBAR ===== */
     .sidebar {
       width: 240px;
       position: fixed;
@@ -53,11 +46,10 @@
       background: #212529;
       color: #fff;
       padding-top: 20px;
+      transition: transform 0.3s ease-in-out;
+      z-index: 1040;
     }
-    .sidebar h3 {
-      text-align: center;
-      margin-bottom: 20px;
-    }
+    .sidebar h3 { text-align: center; margin-bottom: 20px; font-weight: bold; }
     .sidebar a {
       color: #ddd;
       text-decoration: none;
@@ -66,13 +58,32 @@
       font-weight: 500;
       transition: 0.3s;
     }
-    .sidebar a:hover {
-      background: #495057;
+    .sidebar a:hover,
+    .sidebar .active {
+      background: #0d6efd;
       color: #fff;
     }
     .content {
       margin-left: 240px;
       padding: 20px;
+      transition: margin-left 0.3s ease;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 992px) {
+      .sidebar {
+        transform: translateX(-100%);
+      }
+      .sidebar.active {
+        transform: translateX(0);
+      }
+      .content {
+        margin-left: 0;
+        padding: 15px;
+      }
+      .header-dashboard h2 { font-size: 1.4rem; }
+      .metric-card { margin-bottom: 15px; }
+      .metric-value { font-size: 1.3rem; }
     }
   </style>
 </head>
@@ -86,11 +97,11 @@
       </a>
 
       <!-- Botón Hamburguesa -->
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarOasis" aria-controls="navbarOasis" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button">
         <span class="navbar-toggler-icon"></span>
       </button>
 
-      <!-- Opciones -->
+      <!-- Opciones (Navbar superior) -->
       <div class="collapse navbar-collapse" id="navbarOasis">
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
           <li class="nav-item"><a class="nav-link active" href="index.html"><i class="fa fa-home me-1"></i> Dashboard</a></li>
@@ -119,8 +130,8 @@
   </div>
 
   <!-- Content -->
-  <div class="content">
-    <div class="header-dashboard mt-5">
+  <div class="content mt-5">
+    <div class="header-dashboard">
       <h2><i class="fa fa-chart-line me-2"></i> Dashboard General</h2>
       <p class="mb-0">Monitoreo en tiempo real de las <strong>5 habitaciones</strong> del Hotel OASIS</p>
     </div>
@@ -198,7 +209,16 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="js.js"></script>
   <script>
+    // Sidebar toggle en móvil
     document.addEventListener("DOMContentLoaded", () => {
+      const sidebar = document.querySelector(".sidebar");
+      const toggler = document.querySelector(".navbar-toggler");
+
+      toggler.addEventListener("click", () => {
+        sidebar.classList.toggle("active");
+      });
+
+      // Charts
       const ctxBar = document.getElementById("chartBar").getContext("2d");
       const ctxPie = document.getElementById("chartPie").getContext("2d");
       const data = getHotelData();
@@ -240,3 +260,4 @@
   </script>
 </body>
 </html>
+
