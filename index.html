@@ -93,25 +93,15 @@
 </head>
 <body>
   <!-- Navbar Superior -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" style="z-index: 1050">
+  <nav class="navbar navbar-dark bg-dark fixed-top" style="z-index: 1050">
     <div class="container-fluid">
       <a class="navbar-brand fw-bold" href="index.html">
         <i class="fa fa-hotel me-2"></i> Hotel OASIS
       </a>
-      <button class="navbar-toggler" type="button">
+      <!-- Botón hamburguesa solo abre sidebar -->
+      <button class="navbar-toggler" type="button" id="sidebarToggle">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarOasis">
-        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-          <li class="nav-item"><a class="nav-link active" href="index.html"><i class="fa fa-home me-1"></i> Dashboard</a></li>
-          <li class="nav-item"><a class="nav-link" href="inicio.html"><i class="fa fa-play me-1"></i> Inicio</a></li>
-          <li class="nav-item"><a class="nav-link" href="nosotros.html"><i class="fa fa-users me-1"></i> Nosotros</a></li>
-          <li class="nav-item"><a class="nav-link" href="habitaciones.html"><i class="fa fa-bed me-1"></i> Habitaciones</a></li>
-          <li class="nav-item"><a class="nav-link" href="contacto.html"><i class="fa fa-envelope me-1"></i> Contáctanos</a></li>
-          <!-- 🔴 Cerrar Sesión en Navbar -->
-          <li class="nav-item"><a class="nav-link text-danger" href="#" onclick="logout()"><i class="fa fa-sign-out-alt me-1"></i> Cerrar Sesión</a></li>
-        </ul>
-      </div>
     </div>
   </nav>
 
@@ -198,7 +188,6 @@
         window.location.href = "login.html";
       }
 
-      // Mostrar datos en dashboard
       document.getElementById("nombreUsuario").textContent = user.nombre;
       document.getElementById("rolUsuario").textContent = "USUARIO";
       cargarDashboardUsuario();
@@ -210,14 +199,9 @@
       const reservasKey = `reservas_${user.email}`;
       const reservas = JSON.parse(localStorage.getItem(reservasKey)) || [];
 
-      // Total habitaciones fijo = 5
       document.getElementById("totalHabitaciones").textContent = 5;
-
-      // Ocupadas = reservas activas
       const ocupadas = reservas.filter(r => r.estado === "Activa").length;
       document.getElementById("habitacionesOcupadas").textContent = ocupadas;
-
-      // Disponibles = 5 - ocupadas
       document.getElementById("habitacionesDisponibles").textContent = 5 - ocupadas;
     }
 
@@ -226,6 +210,11 @@
       localStorage.removeItem("usuarioActivo");
       window.location.href = "login.html";
     }
+
+    // 📱 Sidebar toggle
+    document.getElementById("sidebarToggle").addEventListener("click", () => {
+      document.querySelector(".sidebar").classList.toggle("active");
+    });
   </script>
 </body>
 </html>
