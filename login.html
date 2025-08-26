@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Spider Login</title>
+    <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+    <div class="container">
+        <div class="diagonal-divider"></div>
+        <div class="left">
+            <div class="logo-container">
+                <img src="imagenes/logo.png" alt="Logo" class="logo-image">
+                <div class="logo-text">
+                    <span class="hotel">HOTEL</span>
+                    <span class="spider">OASIS</span>
+                </div>
+            </div>
+            <p>¡Bienvenido, te estábamos esperando!</p>
+            <button class="switch-button" id="switch-to-register" onclick="window.location.href='register.html'">REGISTRARSE</button>
+        </div>
+        <div class="right">
+            <form class="login-form" id="login-form">
+                <h2>INICIAR SESIÓN</h2>
+                <div class="input-container">
+                    <input type="text" placeholder="Correo electrónico" required>
+                    <span class="icon">&#x2709;</span>
+                </div>
+                <div class="input-container">
+                    <input type="password" placeholder="Contraseña" required>
+                    <span class="icon">&#x1F512;</span>
+                </div>
+                <button class="switch-button" id="switch-to-login" onclick="window.location.href='index.html'">INICIAR SESIÓN</button>
+                <a href="#" class="forgot-password">¿Olvidaste tu contraseña?</a>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
