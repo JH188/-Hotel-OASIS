@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hotel OASIS - Contacto</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+  <style>
+    /* Hero */
+    .hero {
+      background: url("img/hotel.jpg") center/cover no-repeat;
+      height: 280px;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.55);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+    }
+    .hero-content h1 {
+      font-size: 2.6rem;
+      font-weight: bold;
+    }
+
+    /* Formulario */
+    .contacto-form {
+      max-width: 700px;
+      margin: -70px auto 40px auto;
+      background: #fff;
+      padding: 35px;
+      border-radius: 15px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+      position: relative;
+      z-index: 2;
+    }
+    .input-group-text { background: #f8f9fa; border: none; }
+    .form-control:focus {
+      border-color: #0d6efd;
+      box-shadow: 0 0 6px rgba(13, 110, 253, 0.5);
+    }
+    .btn-elite {
+      background: linear-gradient(135deg, #0d6efd, #00c3ff);
+      border: none;
+      color: white;
+      font-weight: 600;
+      padding: 10px 20px;
+      transition: 0.3s;
+    }
+    .btn-elite:hover {
+      background: linear-gradient(135deg, #00c3ff, #0d6efd);
+      transform: scale(1.05);
+    }
+
+    /* Contacto info */
+    .contacto-info {
+      background: linear-gradient(135deg, #0d6efd, #00c3ff);
+      color: white;
+      padding: 50px 20px;
+    }
+    .contacto-info i { font-size: 2rem; margin-bottom: 15px; }
+    .contacto-info h5 { font-weight: bold; margin-bottom: 10px; }
+
+    footer {
+      background: #222;
+      color: #bbb;
+      padding: 20px;
+      text-align: center;
+      font-size: 0.9rem;
+    }
+    footer a { color: #0d6efd; text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    /* Sidebar */
+    .sidebar {
+      width: 240px;
+      position: fixed;
+      top: 0; left: 0; bottom: 0;
+      background: #212529; color: #fff;
+      padding-top: 20px;
+      display: flex;
+      flex-direction: column;
+      z-index: 1040;
+    }
+    .sidebar h3 { text-align: center; margin-bottom: 20px; font-weight: bold; }
+    .sidebar a {
+      color: #ddd; text-decoration: none; display: block;
+      padding: 12px 20px; font-weight: 500; transition: 0.3s;
+    }
+    .sidebar a:hover, .sidebar .active { background: #0d6efd; color: #fff; }
+    .content { margin-left: 240px; padding: 20px; }
+
+    @media(max-width:992px){
+      .sidebar { transform: translateX(-100%); transition: 0.3s; }
+      .sidebar.active { transform: translateX(0); }
+      .content { margin-left: 0; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar Superior -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" style="z-index: 1050">
+    <div class="container-fluid">
+      <a class="navbar-brand fw-bold" href="index.html">
+        <i class="fa fa-hotel me-2"></i> Hotel OASIS
+      </a>
+      <button class="navbar-toggler" type="button">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarOasis">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="index.html"><i class="fa fa-home me-1"></i> Dashboard</a></li>
+          <li class="nav-item"><a class="nav-link" href="inicio.html"><i class="fa fa-play me-1"></i> Inicio</a></li>
+          <li class="nav-item"><a class="nav-link" href="nosotros.html"><i class="fa fa-users me-1"></i> Nosotros</a></li>
+          <li class="nav-item"><a class="nav-link" href="habitaciones.html"><i class="fa fa-bed me-1"></i> Habitaciones</a></li>
+          <li class="nav-item"><a class="nav-link active" href="contacto.html"><i class="fa fa-envelope me-1"></i> Contáctanos</a></li>
+          <li class="nav-item"><a class="nav-link text-danger" href="#" onclick="logout()"><i class="fa fa-sign-out-alt me-1"></i> Cerrar Sesión</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <h3>Hotel OASIS</h3>
+    <a href="index.html"><i class="fa fa-home me-2"></i> Dashboard</a>
+    <a href="inicio.html"><i class="fa fa-play me-2"></i> Inicio</a>
+    <a href="nosotros.html"><i class="fa fa-users me-2"></i> Nosotros</a>
+    <a href="habitaciones.html"><i class="fa fa-bed me-2"></i> Habitaciones</a>
+    <a href="contacto.html" class="active"><i class="fa fa-envelope me-2"></i> Contáctanos</a>
+    <a href="#" onclick="logout()" class="text-danger"><i class="fa fa-sign-out-alt me-2"></i> Cerrar Sesión</a>
+    <div class="mt-auto p-3 text-center small text-muted">
+      Conectado como:<br><span id="rolUsuario">USUARIO</span>
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-content">
+      <h1><i class="fa fa-envelope me-2"></i> Contáctanos</h1>
+      <p>Estamos aquí para ayudarte, 24/7</p>
+    </div>
+  </div>
+
+  <!-- Formulario -->
+  <div class="contacto-form">
+    <h2>Envíanos un mensaje</h2>
+    <p class="text-muted">Completa el formulario y nuestro equipo se pondrá en contacto contigo lo más pronto posible.</p>
+    <form id="formContacto">
+      <div class="mb-3 input-group">
+        <span class="input-group-text"><i class="fa fa-user"></i></span>
+        <input type="text" id="nombre" class="form-control" placeholder="Tu nombre completo" required/>
+      </div>
+      <div class="mb-3 input-group">
+        <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+        <input type="email" id="correo" class="form-control" placeholder="correo@ejemplo.com" required/>
+      </div>
+      <div class="mb-3 input-group">
+        <span class="input-group-text"><i class="fa fa-comment"></i></span>
+        <textarea id="mensaje" class="form-control" rows="4" placeholder="Escribe tu mensaje..." required></textarea>
+      </div>
+      <button type="submit" class="btn btn-elite w-100">Enviar Mensaje</button>
+    </form>
+  </div>
+
+  <!-- Información -->
+  <div class="contacto-info text-center">
+    <div class="row">
+      <div class="col-md-6 col-lg-4 mb-4">
+        <i class="fa fa-map-marker-alt"></i>
+        <h5>Ubícanos</h5>
+        <p>Jr Moquegua 232, Av. Túpac Amaru Km. 17<br/>Carabayllo 15321</p>
+      </div>
+      <div class="col-md-6 col-lg-4 mb-4">
+        <i class="fa fa-phone"></i>
+        <h5>Teléfono</h5>
+        <p>+51 944 200 967</p>
+      </div>
+      <div class="col-md-6 col-lg-4 mb-4">
+        <i class="fa fa-envelope-open-text"></i>
+        <h5>Correo electrónico</h5>
+        <p>jonathan.huaman18@gmail.com</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    © 2025 Hotel OASIS - Todos los derechos reservados |
+    <a href="#">Privacy Policy</a> · <a href="#">Terms & Conditions</a>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // 🔒 Seguridad: sesión, bloqueo y expulsión
+    document.addEventListener("DOMContentLoaded", () => {
+      const usuarioActivo = JSON.parse(localStorage.getItem("usuarioActivo"));
+      const bloqueados = JSON.parse(localStorage.getItem("usuariosBloqueados")) || [];
+      const expulsado = localStorage.getItem("usuarioExpulsado");
+
+      if (!usuarioActivo) {
+        window.location.href = "login.html";
+      } else if (bloqueados.includes(usuarioActivo.email)) {
+        localStorage.removeItem("usuarioActivo");
+        alert("⛔ Tu cuenta fue bloqueada por el administrador.");
+        window.location.href = "login.html";
+      } else if (expulsado && expulsado === usuarioActivo.email) {
+        localStorage.removeItem("usuarioActivo");
+        localStorage.removeItem("usuarioExpulsado");
+        alert("🚪 Has sido expulsado de tu sesión por el administrador.");
+        window.location.href = "login.html";
+      } else {
+        document.getElementById("rolUsuario").innerText = "USUARIO";
+      }
+
+      // Guardar mensajes de contacto
+      document.getElementById("formContacto").addEventListener("submit", (e) => {
+        e.preventDefault();
+        const nombre = document.getElementById("nombre").value.trim();
+        const correo = document.getElementById("correo").value.trim();
+        const mensaje = document.getElementById("mensaje").value.trim();
+
+        if (!nombre || !correo || !mensaje) {
+          alert("⚠️ Completa todos los campos.");
+          return;
+        }
+
+        const mensajes = JSON.parse(localStorage.getItem("mensajesContacto")) || [];
+        mensajes.push({ nombre, correo, mensaje, fecha: new Date().toLocaleString() });
+        localStorage.setItem("mensajesContacto", JSON.stringify(mensajes));
+
+        alert("✅ Tu mensaje fue enviado correctamente. Pronto nos pondremos en contacto.");
+        document.getElementById("formContacto").reset();
+      });
+    });
+
+    // 🚪 Logout
+    function logout() {
+      localStorage.removeItem("usuarioActivo");
+      window.location.href = "login.html";
+    }
+  </script>
+</body>
+</html>

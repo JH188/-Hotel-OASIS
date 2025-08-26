@@ -1,0 +1,237 @@
+/* ======== ESTILOS BASE ======== */
+body {
+  background-color: #f5f6fa;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* ======== SIDEBAR ======== */
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 240px;
+  height: 100%;
+  background: #1e1e1e;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 2px 0 8px rgba(0,0,0,0.2);
+  transition: transform 0.3s ease;
+  z-index: 1000;
+}
+
+.sidebar h3, .sidebar h4 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #fff;
+}
+
+.sidebar a {
+  display: block;
+  color: #ddd;
+  padding: 10px;
+  margin: 4px 0;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: 0.3s;
+}
+
+.sidebar a:hover {
+  background: #0d6efd;
+  color: #fff;
+}
+
+.sidebar .active {
+  background: #0d6efd;
+  color: white;
+}
+
+.sidebar-section {
+  font-size: 0.8rem;
+  font-weight: bold;
+  color: #888;
+  margin: 15px 0 5px 5px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* ======== BOTÓN HAMBURGUESA ======== */
+.toggle-btn {
+  display: none;
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  background: #0d6efd;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  padding: 8px 12px;
+  border-radius: 6px;
+  z-index: 1200;
+  cursor: pointer;
+}
+
+/* ======== CONTENIDO ======== */
+.content {
+  margin-left: 240px;
+  padding: 20px;
+  transition: margin-left 0.3s ease;
+}
+
+.card {
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* ======== HERO ======== */
+.hero {
+  background: #fff;
+  text-align: center;
+  padding: 60px 20px;
+}
+.hero h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+.hero p {
+  margin-top: 10px;
+  font-size: 1.2rem;
+  color: #555;
+}
+
+/* ======== HISTORIA ======== */
+.historia {
+  padding: 60px 20px;
+  background: #fff;
+}
+.historia h2 {
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+.historia .contenido {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+}
+.historia img {
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  max-width: 450px;
+  flex: 1;
+}
+.historia p {
+  flex: 2;
+  color: #333;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  text-align: justify;
+}
+
+/* ======== FEATURES ======== */
+.features {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  text-align: center;
+  gap: 20px;
+  padding: 40px 20px;
+}
+.features > div {
+  flex: 1 1 280px;
+  padding: 30px 20px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+  transition: transform 0.3s;
+}
+.features > div:hover {
+  transform: translateY(-6px);
+}
+.features .blue {
+  background: #0d6efd;
+  color: #fff;
+}
+
+/* ======== FOOTER ======== */
+footer {
+  margin-left: 240px;
+  text-align: center;
+  padding: 15px;
+  background: #f1f1f1;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+/* ======== FORMULARIOS / MODALES ======== */
+.modal-content {
+  border-radius: 16px;
+  overflow: hidden;
+}
+.input-group-text {
+  background: #f1f1f1;
+  border: none;
+  font-size: 1.1rem;
+}
+.form-control:focus {
+  border-color: #0d6efd;
+  box-shadow: 0 0 6px rgba(13, 110, 253, 0.5);
+}
+.btn-success {
+  background: linear-gradient(135deg, #00b894, #0d6efd);
+  border: none;
+}
+
+/* ======== RESPONSIVE ======== */
+@media (max-width: 992px) {
+  /* Sidebar oculto en móvil */
+  .sidebar {
+    transform: translateX(-100%);
+  }
+  .sidebar.active {
+    transform: translateX(0);
+  }
+  .toggle-btn {
+    display: block;
+  }
+  .content {
+    margin-left: 0;
+  }
+
+  /* Hero */
+  .hero h1 {
+    font-size: 1.8rem;
+  }
+  .hero p {
+    font-size: 1rem;
+  }
+
+  /* Historia */
+  .historia .contenido {
+    flex-direction: column;
+    text-align: center;
+  }
+  .historia img {
+    max-width: 100%;
+  }
+  .historia p {
+    font-size: 1rem;
+    text-align: justify;
+  }
+
+  /* Features */
+  .features {
+    flex-direction: column;
+  }
+
+  /* Footer */
+  footer {
+    margin-left: 0;
+    font-size: 0.8rem;
+  }
+}

@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hotel OASIS - Habitaciones</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+  <style>
+    /* Hero */
+    .hero {
+      background: url("img/banner.jpg") center/cover no-repeat;
+      height: 300px;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+    }
+    .hero-content {
+      position: relative;
+      text-align: center;
+      z-index: 1;
+    }
+    .hero-content h1 {
+      font-size: 2.5rem;
+      font-weight: bold;
+    }
+
+    /* Tarjetas */
+    .habitacion-card {
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+      overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .habitacion-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+    }
+    .habitacion-card img {
+      height: 220px;
+      object-fit: cover;
+      transition: transform 0.4s;
+    }
+    .habitacion-card:hover img { transform: scale(1.05); }
+
+    /* Botones */
+    .btn-elite {
+      background: linear-gradient(135deg, #0d6efd, #00c3ff);
+      color: white;
+      border: none;
+      transition: 0.3s;
+      font-weight: 600;
+    }
+    .btn-elite:hover {
+      background: linear-gradient(135deg, #00c3ff, #0d6efd);
+      transform: scale(1.05);
+    }
+
+    /* Contador */
+    .contador {
+      background: linear-gradient(135deg, #00c3ff, #0d6efd);
+      color: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      max-width: 320px;
+      margin: 0 auto 40px auto;
+    }
+
+    footer {
+      background: #f8f9fa;
+      padding: 20px;
+      margin-top: 40px;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #6c757d;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar Superior -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" style="z-index: 1050">
+    <div class="container-fluid">
+      <a class="navbar-brand fw-bold" href="index.html">
+        <i class="fa fa-hotel me-2"></i> Hotel OASIS
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarOasis">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Opciones -->
+      <div class="collapse navbar-collapse" id="navbarOasis">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="index.html"><i class="fa fa-home me-1"></i> Dashboard</a></li>
+          <li class="nav-item"><a class="nav-link" href="inicio.html"><i class="fa fa-play me-1"></i> Inicio</a></li>
+          <li class="nav-item"><a class="nav-link" href="nosotros.html"><i class="fa fa-users me-1"></i> Nosotros</a></li>
+          <li class="nav-item"><a class="nav-link active" href="habitaciones.html"><i class="fa fa-bed me-1"></i> Habitaciones</a></li>
+          <li class="nav-item"><a class="nav-link" href="contacto.html"><i class="fa fa-envelope me-1"></i> Contáctanos</a></li>
+          <li class="nav-item"><a class="nav-link text-danger" href="#" onclick="logout()"><i class="fa fa-sign-out-alt me-1"></i> Cerrar Sesión</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <h3>Hotel OASIS</h3>
+    <a href="index.html"><i class="fa fa-home me-2"></i> Dashboard</a>
+    <a href="inicio.html"><i class="fa fa-play me-2"></i> Inicio</a>
+    <a href="nosotros.html"><i class="fa fa-users me-2"></i> Nosotros</a>
+    <a href="habitaciones.html" class="active"><i class="fa fa-bed me-2"></i> Habitaciones</a>
+    <a href="habitaciones_disponibles.html"><i class="fa fa-book me-2"></i> Disponibles</a>
+    <a href="habitaciones_ocupadas.html"><i class="fa fa-door-closed me-2"></i> Ocupadas</a>
+    <a href="contacto.html"><i class="fa fa-envelope me-2"></i> Contáctanos</a>
+    <a href="#" onclick="logout()" class="text-danger"><i class="fa fa-sign-out-alt me-2"></i> Cerrar Sesión</a>
+  </div>
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-content">
+      <h1><i class="fa fa-bed me-2"></i> Nuestras Habitaciones</h1>
+      <p>Confort, estilo y lujo en cada detalle</p>
+    </div>
+  </div>
+
+  <!-- Content -->
+  <div class="content p-4">
+    <!-- Contador -->
+    <div class="card contador text-center p-4">
+      <h6 class="fw-bold">TOTAL DE HABITACIONES</h6>
+      <h4 class="fw-bold">5 Habitaciones</h4>
+      <p class="mb-0">Información actualizada</p>
+    </div>
+
+    <!-- Tipos de Habitaciones -->
+    <h3 class="mb-4 fw-bold">Tipos de Habitaciones</h3>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="habitacion-card card">
+          <img src="img/individual.jpg" alt="Habitación Individual" />
+          <div class="p-3">
+            <h5 class="fw-bold">Habitación Individual</h5>
+            <p>Cómoda habitación para una persona.<br><strong>$50 / noche</strong></p>
+            <a href="habitaciones_disponibles.html" class="btn btn-elite w-100">Ver Disponibles</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="habitacion-card card">
+          <img src="img/doble.jpg" alt="Habitación Doble" />
+          <div class="p-3">
+            <h5 class="fw-bold">Habitación Doble</h5>
+            <p>Ideal para dos personas.<br><strong>$80 / noche</strong></p>
+            <a href="habitaciones_disponibles.html" class="btn btn-elite w-100">Ver Disponibles</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="habitacion-card card">
+          <img src="img/standard.jpg" alt="Habitación Standard" />
+          <div class="p-3">
+            <h5 class="fw-bold">Habitación Standard</h5>
+            <p>Confortable y accesible.<br><strong>$70 / noche</strong></p>
+            <a href="habitaciones_disponibles.html" class="btn btn-elite w-100">Ver Disponibles</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="habitacion-card card">
+          <img src="img/deluxe.jpg" alt="Habitación Deluxe" />
+          <div class="p-3">
+            <h5 class="fw-bold">Habitación Deluxe</h5>
+            <p>Lujo y comodidad.<br><strong>$120 / noche</strong></p>
+            <a href="habitaciones_disponibles.html" class="btn btn-elite w-100">Ver Disponibles</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="habitacion-card card">
+          <img src="img/suite.jpg" alt="Suite" />
+          <div class="p-3">
+            <h5 class="fw-bold">Suite</h5>
+            <p>Máxima elegancia y espacio.<br><strong>$200 / noche</strong></p>
+            <a href="habitaciones_disponibles.html" class="btn btn-elite w-100">Ver Disponibles</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>&copy; 2025 Hotel OASIS - Todos los derechos reservados</footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // 🔒 Seguridad unificada
+    document.addEventListener("DOMContentLoaded", () => {
+      const usuarioActivo = JSON.parse(localStorage.getItem("usuarioActivo"));
+      const bloqueados = JSON.parse(localStorage.getItem("usuariosBloqueados")) || [];
+      const expulsado = localStorage.getItem("usuarioExpulsado");
+
+      if (!usuarioActivo) {
+        window.location.href = "login.html";
+      } else if (bloqueados.includes(usuarioActivo.email)) {
+        localStorage.removeItem("usuarioActivo");
+        alert("⛔ Tu cuenta fue bloqueada por el administrador.");
+        window.location.href = "login.html";
+      } else if (expulsado && expulsado === usuarioActivo.email) {
+        localStorage.removeItem("usuarioActivo");
+        localStorage.removeItem("usuarioExpulsado");
+        alert("🚪 Has sido expulsado de tu sesión por el administrador.");
+        window.location.href = "login.html";
+      }
+    });
+
+    function logout() {
+      localStorage.removeItem("usuarioActivo");
+      window.location.href = "login.html";
+    }
+  </script>
+</body>
+</html>
